@@ -33,5 +33,7 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     // 让首页直接跳转到商品页面
     Route::redirect('/', '/products')->name('root');
 	Route::get('products', 'ProductsController@index')->name('products.index');
+	// 产品详情
+	Route::get('products/{product}', 'ProductsController@show')->name('products.show');
 });
 
