@@ -12,7 +12,7 @@
 */
 
 
-Route::get('/', 'PagesController@root')->name('root');
+//Route::get('/', 'PagesController@root')->name('root');
 // 在之前的路由里加上一个 verify 参数
 Auth::routes(['verify' => true]);
 
@@ -30,5 +30,8 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::put('user_addresses/{user_address}', 'UserAddressesController@update')->name('user_addresses.update');
     // 删除收货地址
     Route::delete('user_addresses/{user_address}', 'UserAddressesController@destroy')->name('user_addresses.destroy');
+    // 让首页直接跳转到商品页面
+    Route::redirect('/', '/products')->name('root');
+	Route::get('products', 'ProductsController@index')->name('products.index');
 });
 
