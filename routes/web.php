@@ -43,6 +43,10 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
 
     // 添加产品到购物车
     Route::post('cart', 'CartController@add')->name('cart.add');
+    // 购物车产品
+    Route::get('cart', 'CartController@index')->name('cart.index');
+    // 移除购物车商品
+    Route::delete('cart/{sku}', 'CartController@remove')->name('cart.remove');
 });
 
 // 产品详情 （为避免与用户收藏列表冲突，将路由放在收藏列表路由的下方）
