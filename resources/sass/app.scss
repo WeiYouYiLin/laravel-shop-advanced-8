@@ -58,8 +58,8 @@ body {
   }
 }
 
-/* 产品列表 */ 
-.products-index-page {
+/* 产品列表 和 用户收藏列表*/ 
+.products-index-page,.products-favorites-page {
   .pagination {
     margin-right: 5px;
   }

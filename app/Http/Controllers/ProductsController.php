@@ -90,4 +90,11 @@ class ProductsController extends Controller
 
         return [];
     }
+    // 当前用户收藏列表
+    public function favorites(Request $request)
+    {
+        $products = $request->user()->favoriteProducts()->paginate(16);
+
+        return view('products.favorites', ['products' => $products]);
+    }
 }

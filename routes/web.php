@@ -18,8 +18,7 @@ Auth::routes(['verify' => true]);
 // 让首页直接跳转到商品页面
 Route::redirect('/', '/products')->name('root');
 Route::get('products', 'ProductsController@index')->name('products.index');
-// 产品详情
-Route::get('products/{product}', 'ProductsController@show')->name('products.show');
+
 // auth 中间件代表需要登录，verified中间件代表需要经过邮箱验证
 Route::group(['middleware' => ['auth', 'verified']], function() {
 	// 收货地址首页
@@ -39,5 +38,9 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
 	Route::post('products/{product}/favorite', 'ProductsController@favor')->name('products.favor');
 	// 用户取消收藏
     Route::delete('products/{product}/favorite', 'ProductsController@disfavor')->name('products.disfavor');
+    // 用户收藏列表
+    Route::get('products/favorites', 'ProductsController@favorites')->name('products.favorites');
 });
 
+// 产品详情 （为避免与用户收藏列表冲突，将路由放在收藏列表路由的下方）
+Route::get('products/{product}', 'ProductsController@show')->name('products.show');
