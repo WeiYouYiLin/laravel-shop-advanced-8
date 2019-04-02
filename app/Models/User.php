@@ -36,6 +36,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
     // 用户的地址
     public function addresses()
     {
@@ -48,5 +49,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Product::class, 'user_favorite_products')
             ->withTimestamps()
             ->orderBy('user_favorite_products.created_at', 'desc');
+    }
+
+    // 购物车
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
     }
 }

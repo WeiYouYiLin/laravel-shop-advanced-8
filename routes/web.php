@@ -40,6 +40,9 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::delete('products/{product}/favorite', 'ProductsController@disfavor')->name('products.disfavor');
     // 用户收藏列表
     Route::get('products/favorites', 'ProductsController@favorites')->name('products.favorites');
+
+    // 添加产品到购物车
+    Route::post('cart', 'CartController@add')->name('cart.add');
 });
 
 // 产品详情 （为避免与用户收藏列表冲突，将路由放在收藏列表路由的下方）
