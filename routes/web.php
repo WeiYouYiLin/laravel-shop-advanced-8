@@ -57,3 +57,12 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
 
 // 产品详情 （为避免与用户收藏列表冲突，将路由放在收藏列表路由的下方）
 Route::get('products/{product}', 'ProductsController@show')->name('products.show');
+
+// 支付宝
+Route::get('alipay', function() {
+    return app('alipay')->web([
+        'out_trade_no' => time(),
+        'total_amount' => '1',
+        'subject' => 'test subject - 测试',
+    ]);
+});
