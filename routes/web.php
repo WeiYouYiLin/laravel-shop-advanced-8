@@ -51,6 +51,8 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::post('orders', 'OrdersController@store')->name('orders.store');
     // 订单列表
     Route::get('orders', 'OrdersController@index')->name('orders.index');
+    // 订单详情
+    Route::get('orders/{order}', 'OrdersController@show')->name('orders.show');
 });
 
 // 产品详情 （为避免与用户收藏列表冲突，将路由放在收藏列表路由的下方）
