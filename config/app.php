@@ -227,5 +227,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
-
+    // 加入购物车后多长时间，订单关闭，目前设置为30分钟
+    'order_ttl' => 1800,
 ];
