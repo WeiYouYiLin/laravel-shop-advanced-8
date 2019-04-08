@@ -21,5 +21,6 @@ class VerifyCsrfToken extends Middleware
     // 加到 CSRF 白名单里
     protected $except = [
         'payment/alipay/notify',
+        'payment/wechat/notify',
     ];
 }
