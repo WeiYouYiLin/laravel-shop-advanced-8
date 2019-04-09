@@ -24,6 +24,8 @@ Route::group([
     // 编辑商品操作
 	$router->put('products/{id}', 'ProductsController@update');
 
-    // 订单列表
+    // 订单列表页
     $router->get('orders', 'OrdersController@index')->name('admin.orders.index');
+    // 订单详情页
+    $router->get('orders/{order}', 'OrdersController@show')->name('admin.orders.show');
 });
