@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
             // 服务器端回调地址
             //$config['notify_url'] = route('payment.alipay.notify');
             // 生成测试的域名
-            $config['notify_url'] = 'http://requestbin.fullcontact.com/1alwm1d1';
+            $config['notify_url'] = 'http://requestbin.fullcontact.com/wei19xwe';
             // 前端回调地址
             $config['return_url'] = route('payment.alipay.return');
             // 判断当前项目运行环境是否为线上环境
@@ -38,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton('wechat_pay', function () {
             $config = config('pay.wechat');
             // 生成测试的域名
-            $config['notify_url'] = 'http://requestbin.fullcontact.com/[替换成你自己的url]';
+            $config['notify_url'] = 'http://requestbin.fullcontact.com/wei19xwe';
             if (app()->environment() !== 'production') {
                 $config['log']['level'] = Logger::DEBUG;
             } else {
