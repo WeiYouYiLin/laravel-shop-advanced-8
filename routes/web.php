@@ -70,6 +70,9 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     // 提交评价接口
     Route::post('orders/{order}/review', 'OrdersController@sendReview')->name('orders.review.store');
 
+    // 申请退款的接口
+    Route::post('orders/{order}/apply_refund', 'OrdersController@applyRefund')->name('orders.apply_refund');
+
 });
 
 // 产品详情 （为避免与用户收藏列表冲突，将路由放在收藏列表路由的下方）
