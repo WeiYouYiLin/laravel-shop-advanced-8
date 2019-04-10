@@ -65,6 +65,11 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     // 确认收货
     Route::post('orders/{order}/received', 'OrdersController@received')->name('orders.received');
 
+    // 评价页面
+    Route::get('orders/{order}/review', 'OrdersController@review')->name('orders.review.show');
+    // 提交评价接口
+    Route::post('orders/{order}/review', 'OrdersController@sendReview')->name('orders.review.store');
+
 });
 
 // 产品详情 （为避免与用户收藏列表冲突，将路由放在收藏列表路由的下方）
