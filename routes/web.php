@@ -62,6 +62,9 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     // 微信支付
     Route::get('payment/{order}/wechat', 'PaymentController@payByWechat')->name('payment.wechat');
 
+    // 确认收货
+    Route::post('orders/{order}/received', 'OrdersController@received')->name('orders.received');
+
 });
 
 // 产品详情 （为避免与用户收藏列表冲突，将路由放在收藏列表路由的下方）
