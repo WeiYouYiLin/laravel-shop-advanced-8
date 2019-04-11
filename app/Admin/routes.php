@@ -31,4 +31,7 @@ Route::group([
 
     // 发货信息填写 
     $router->post('orders/{order}/ship', 'OrdersController@ship')->name('admin.orders.ship');
+
+    // 处理退款的接口
+    $router->post('orders/{order}/refund', 'OrdersController@handleRefund')->name('admin.orders.handle_refund');
 });
