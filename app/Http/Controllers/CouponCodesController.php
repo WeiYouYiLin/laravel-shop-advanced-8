@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CouponCode;
-use Carbon\Carbon;
+use App\Exceptions\CouponCodeUnavailableException;
 
 class CouponCodesController extends Controller
 {
     public function show($code)
     {
-        // 判断优惠券是否存在
+        /*// 判断优惠券是否存在
         if (!$record = CouponCode::where('code', $code)->first()) {
             abort(404);
         }
@@ -30,7 +30,13 @@ class CouponCodesController extends Controller
 
         if ($record->not_after && $record->not_after->lt(Carbon::now())) {
             return response()->json(['msg' => '该优惠券已过期'], 403);
+        }*/
+
+        if (!$record = CouponCode::where('code', $code)->first()) {
+            throw new CouponCodeUnavailableException('优惠券不存在');
         }
+
+        $record->checkAvailable();
 
         return $record;
     }
