@@ -204,7 +204,7 @@ class CouponCodesController extends Controller
                 return 'nullable|unique:coupon_codes';
             }
         });
-        $form->radio('type', '类型')->options(CouponCode::$typeMap)->rules('required');
+        $form->radio('type', '类型')->options(CouponCode::$typeMap)->default('fixed')->rules('required');
         $form->text('value', '折扣')->rules(function ($form) {
             if (request()->input('type') === CouponCode::TYPE_PERCENT) {
                 // 如果选择了百分比折扣类型，那么折扣范围只能是 1 ~ 99
@@ -216,8 +216,12 @@ class CouponCodesController extends Controller
         });
         $form->text('total', '总量')->rules('required|numeric|min:0');
         $form->text('min_amount', '最低金额')->rules('required|numeric|min:0');
-        $form->datetime('not_before', '开始时间');
-        $form->datetime('not_after', '结束时间');
+        $form->datetime('not_before', '开始时间')->rules('date|nullable');
+        $form->datetime('not_after', '结束时间')->rules(function ($form) {
+            return 'date|nullable|after_or_equal:not_before';
+        }, [
+            'after_or_equal' => '结束时间 必须要等于 开始时间 或更晚。',
+        ]);     
         $form->radio('enabled', '启用')->options(['1' => '是', '0' => '否']);
 
         $form->saving(function (Form $form) {
