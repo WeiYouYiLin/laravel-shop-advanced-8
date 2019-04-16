@@ -8,10 +8,11 @@ use Illuminate\Support\Str;
 class Product extends Model
 {
     protected $fillable = [
-                    'title', 'description', 'image', 'on_sale', 
+                    'title', 'description', 'image', 'images','on_sale', 
                     'rating', 'sold_count', 'review_count', 'price'
     ];
     protected $casts = [
+        //'images' => 'array',
         'on_sale' => 'boolean', // on_sale 是一个布尔类型的字段
     ];
     // 与商品SKU关联
@@ -27,5 +28,16 @@ class Product extends Model
             return $this->attributes['image'];
         }
         return \Storage::disk('public')->url($this->attributes['image']);
+    }
+    public function setImagesAttribute($images)
+    {
+        if (is_array($images)) {
+            $this->attributes['images'] = json_encode($images);
+        }
+    }
+
+    public function getImagesAttribute($images)
+    {
+        return json_decode($images, true);
     }
 }
