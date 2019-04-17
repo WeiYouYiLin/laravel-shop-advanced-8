@@ -156,11 +156,20 @@ class ProductsController extends Controller
 
         // 创建一个选择图片的框       
         $form->image('image', '封面图片')->rules('required|image');
-        $form->multipleImage('images', '展示图片')
-            ->rules('image|nullable')
+       /* $form->multipleImage('images', '展示图片')
+            ->rules('array')
             ->uniqueName()
-            ->removable();
-
+            ->removable();*/
+        $form->multipleImage('images', '展示图片')->rules(function($form) {
+            // 如果 $form->model()->id 不为空，代表是编辑操作
+            if ($form->model()->images != []) {              
+                return 'nullable|image';
+            } else {
+                return 'required';
+            }
+        })
+        ->uniqueName()
+        ->removable();
         // 创建一个富文本编辑器
         $form->editor('description', '商品描述')->rules('required');
 
