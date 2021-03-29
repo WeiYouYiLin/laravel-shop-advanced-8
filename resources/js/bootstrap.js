@@ -1,3 +1,5 @@
+// 二次确认
+require('sweetalert');
 window._ = require('lodash');
 
 /**
