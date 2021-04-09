@@ -67,7 +67,8 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    //'timezone' => 'UTC',
+    'timezone' => 'Asia/Shanghai',
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +81,7 @@ return [
     |
     */
 
-    //'locale' => 'en',
+    // 'locale' => 'en',
     'locale' => 'zh_CN',
 
     /*
@@ -107,7 +108,7 @@ return [
     |
     */
 
-    //'faker_locale' => 'en_US',
+    // 'faker_locale' => 'en_US',
     'faker_locale' => 'zh_CN',
 
     /*
