@@ -232,5 +232,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
-
+    // 订单延迟支付时间
+    'order_ttl' => 1800,
 ];
