@@ -17,6 +17,7 @@ use App\Events\OrderReviewed;
 use App\Http\Requests\ApplyRefundRequest;
 use App\Exceptions\CouponCodeUnavailableException;
 use App\Models\CouponCode;
+use App\Http\Requests\SeckillOrderRequest;
 
 class OrdersController extends Controller
 {
@@ -155,5 +156,14 @@ class OrdersController extends Controller
         $amount  = $request->input('amount');
 
         return $orderService->crowdfunding($user, $address, $sku, $amount);
+    }
+
+    public function seckill(SeckillOrderRequest $request, OrderService $orderService)
+    {
+        $user    = $request->user();
+        $address = UserAddress::find($request->input('address_id'));
+        $sku     = ProductSku::find($request->input('sku_id'));
+
+        return $orderService->seckill($user, $address, $sku);
     }
 }
